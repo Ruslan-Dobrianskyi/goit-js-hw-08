@@ -65,3 +65,68 @@ const images = [
 ];
 
 const gallery = document.querySelector(".gallery");
+
+function imageTemplate(image) {
+  return `
+       <li class="gallery__item">
+        <a
+          class="gallery__link"
+          href="${image.original}"
+        >
+          <img
+            class="gallery__image"
+            src="${image.preview}"
+            data-source="${image.original}"
+            alt="${image.description}"
+            width="360"
+            height="200"
+          />
+        </a>
+      </li>
+    `;
+}
+
+function imagesTemplate(arr) {
+  return arr.map(imageTemplate).join("");
+}
+
+function renderGallery(arr) {
+  const markup = imagesTemplate(arr);
+  gallery.innerHTML = markup;
+}
+
+renderGallery(images);
+
+gallery.addEventListener("click", (e) => {
+  if (e.target === e.currentTarget) {
+    return;
+  }
+  const instance = basicLightbox.create(`
+    <div class="modal">
+      <img src="${e.target.dataset.source}" width="1112" height="640">
+    </div>
+`);
+
+  instance.show();
+});
+
+// const cardGalleryMarkup = (card) => {
+//   const { preview, original, description } = card;
+//   return `
+//     <li class="gallery__item">
+//       <a
+//         class="gallery__link"
+//         href="${original}"
+//       >
+//         <img
+//           class="gallery__image"
+//           src="${preview}"
+//           data-source="${original}"
+//           alt="${description}"
+//         />
+//       </a>
+//     </li>
+//   `;
+// };
+
+// gallery.addEventListener();

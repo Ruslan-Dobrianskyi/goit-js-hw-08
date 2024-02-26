@@ -2,6 +2,11 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 20px;
+  gap: 24px;
+  padding: 0;
+  margin: 0;
   list-style-type: none;
+  cursor: pointer;
+  max-width: 1440px;
+  margin: 0 auto;
 }
