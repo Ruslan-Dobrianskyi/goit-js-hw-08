@@ -2,11 +2,18 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 24px;
-  padding: 0;
-  margin: 0;
   list-style-type: none;
-  cursor: pointer;
-  max-width: 1440px;
+  gap: 10px;
+  padding: 0;
   margin: 0 auto;
+
+  max-width: 1440px;
+}
+
+.gallery__image {
+  cursor: pointer;
+  transition: transform 400ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.gallery__image:hover {
+  transform: scale(1.03);
 }

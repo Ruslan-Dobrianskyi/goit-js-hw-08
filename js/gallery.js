@@ -66,20 +66,20 @@ const images = [
 
 const gallery = document.querySelector(".gallery");
 
-function imageTemplate(image) {
+function imageTemplate({ preview, original, description }) {
   return `
        <li class="gallery__item">
         <a
           class="gallery__link"
-          href="${image.original}"
+          href="${original}"
         >
           <img
             class="gallery__image"
-            src="${image.preview}"
-            data-source="${image.original}"
-            alt="${image.description}"
+            src="${preview}"
+            data-source="${original}"
+            alt="${description}"
             width="360"
-            height="200"
+            height="220"
           />
         </a>
       </li>
@@ -98,6 +98,7 @@ function renderGallery(arr) {
 renderGallery(images);
 
 gallery.addEventListener("click", (e) => {
+  e.preventDefault();
   if (e.target === e.currentTarget) {
     return;
   }
@@ -109,24 +110,3 @@ gallery.addEventListener("click", (e) => {
 
   instance.show();
 });
-
-// const cardGalleryMarkup = (card) => {
-//   const { preview, original, description } = card;
-//   return `
-//     <li class="gallery__item">
-//       <a
-//         class="gallery__link"
-//         href="${original}"
-//       >
-//         <img
-//           class="gallery__image"
-//           src="${preview}"
-//           data-source="${original}"
-//           alt="${description}"
-//         />
-//       </a>
-//     </li>
-//   `;
-// };
-
-// gallery.addEventListener();
