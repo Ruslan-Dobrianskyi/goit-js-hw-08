@@ -96,17 +96,27 @@ function renderGallery(arr) {
 }
 
 renderGallery(images);
+let instance;
 
 gallery.addEventListener("click", (e) => {
   e.preventDefault();
-  if (e.target === e.currentTarget) {
+  if (e.target.nodeName !== "IMG") {
     return;
   }
-  const instance = basicLightbox.create(`
+  instance = basicLightbox.create(`
     <div class="modal">
       <img src="${e.target.dataset.source}" width="1112" height="640">
     </div>
 `);
 
   instance.show();
+
+  document.addEventListener("keydown", onEscClick);
 });
+
+function onEscClick(e) {
+  if (e.code === "Escape") {
+    document.removeEventListener("keydown", onEscClick);
+    instance.close();
+  }
+}
